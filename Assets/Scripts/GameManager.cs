@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
     public PlayerMovement ariaMovement;
     public PlayerMovement shadowMovement;
     public Camera mainCamera;
-
+    public static Vector3 lastCheckpoint = Vector3.zero;
+    public static bool mirrorMode = false;
     private bool isControllingAria = true;
 
     void Start()
@@ -20,8 +21,6 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
-            // قبل از سوئیچ کردن، اگر الان کنترل دست سایه است:
-            // باید آریا را به موقعیت سایه بیاوریم
             if (!isControllingAria) 
             {
                 ariaMovement.transform.position = shadowMovement.transform.position;
@@ -31,7 +30,6 @@ public class GameManager : MonoBehaviour
             UpdateControl();
         }
 
-        // وقتی کنترل دست آریاست، سایه را همیشه همراهش نگه دار (برای سوئیچ بعدی آماده باشد)
         if (isControllingAria)
         {
             shadowMovement.transform.position = ariaMovement.transform.position;
@@ -67,5 +65,10 @@ public class GameManager : MonoBehaviour
 
             mainCamera.cullingMask = baseMask | (1 << LayerMask.NameToLayer("ShadowLayer")) | (1 << LayerMask.NameToLayer("ShadowWorld"));
         }
+    }
+
+    public bool IsControllingAria()
+    {
+        return isControllingAria;
     }
 }
