@@ -35,7 +35,7 @@ public class Boss : MonoBehaviour
         if (Vector3.Distance(transform.position, target.position) < 0.1f)
         {
             target = (target == pointA) ? pointB : pointA;
-            // Flip() رو حذف کردم
+            
         }
 
         GameObject aria = GameObject.Find("Aria");
@@ -93,7 +93,7 @@ public class Boss : MonoBehaviour
         }
     }
 
-    void TakeDamage(int damage)
+   public void TakeDamage(int damage)
     {
         health--;
         sr.color = Color.white;
