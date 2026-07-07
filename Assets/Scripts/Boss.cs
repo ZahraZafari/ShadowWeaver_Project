@@ -17,6 +17,7 @@ public class Boss : MonoBehaviour
     private SpriteRenderer sr;
     private float attackTimer = 0f;
     private bool isPlayerNear = false;
+    private bool isDead = false;
 
     void Start()
     {
@@ -30,12 +31,13 @@ public class Boss : MonoBehaviour
 
     void Update()
     {
+        if (isDead) return;
+
         transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, target.position) < 0.1f)
         {
             target = (target == pointA) ? pointB : pointA;
-            
         }
 
         GameObject aria = GameObject.Find("Aria");
@@ -78,23 +80,31 @@ public class Boss : MonoBehaviour
         if (rb != null)
         {
             Vector2 direction = (targetChar.transform.position - firePoint.position).normalized;
-            rb.velocity = direction * 8f;
+            rb.velocity = direction * 10f;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
+{
+    if (isDead) return;
+
+    if (collision.gameObject.name == "Shadow" || collision.gameObject.name == "Aria")
     {
-        if (collision.gameObject.name == "Shadow" || collision.gameObject.name == "Aria")
+        TakeDamage(1);
+        
+        if (!isDead)
         {
-            TakeDamage(1);
             PlayerHealth health = collision.gameObject.GetComponent<PlayerHealth>();
             if (health != null)
                 health.TakeDamage(1);
         }
     }
+}
 
-   public void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
+        if (isDead) return;
+
         health--;
         sr.color = Color.white;
         Invoke("ResetColor", 0.2f);
@@ -111,11 +121,26 @@ public class Boss : MonoBehaviour
     }
 
     void Die()
+{
+    if (isDead) return;
+    isDead = true;
+
+    
+    GameObject[] projectiles = GameObject.FindGameObjectsWithTag("BossProjectile");
+    foreach (GameObject proj in projectiles)
     {
-        if (finishLine != null)
-            finishLine.SetActive(true);
-        if (winPanel != null)
-            winPanel.SetActive(true);
-        Destroy(gameObject);
+        Destroy(proj);
     }
+
+    if (finishLine != null)
+        finishLine.SetActive(true);
+    if (winPanel != null)
+        winPanel.SetActive(true);
+
+    Collider2D col = GetComponent<Collider2D>();
+    if (col != null)
+        col.enabled = false;
+
+    Destroy(gameObject);
+}
 }

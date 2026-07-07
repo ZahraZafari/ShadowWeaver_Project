@@ -3,6 +3,12 @@ using UnityEngine;
 public class BossProjectile : MonoBehaviour
 {
     public int damage = 1;
+    public float lifeTime = 10f;
+
+    void Start()
+    {
+        Destroy(gameObject, lifeTime);
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
