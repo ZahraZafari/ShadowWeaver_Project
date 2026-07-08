@@ -13,6 +13,16 @@ public class ShadowThrow_Simple : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.mirrorMode)
+{
+    if (gameObject.name != "Aria")
+        return;
+}
+else
+{
+    if (gameObject.name != "Shadow")
+        return;
+}
         if (Input.GetKeyDown(KeyCode.Space))
         {
             isShadowMode = !isShadowMode;

@@ -6,7 +6,14 @@ public class DoorSwitch : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.name == "Shadow")
+        string allowedPlayer;
+
+        if (GameManager.mirrorMode)
+            allowedPlayer = "Aria";
+        else
+            allowedPlayer = "Shadow";
+
+        if (other.gameObject.name == allowedPlayer)
         {
             door.SetActive(false);
         }

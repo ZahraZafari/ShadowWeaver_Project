@@ -7,8 +7,9 @@ public class GameManager : MonoBehaviour
     public PlayerMovement ariaMovement;
     public PlayerMovement shadowMovement;
     public Camera mainCamera;
+
     public static Vector3 lastCheckpoint = Vector3.zero;
-    public static bool mirrorMode = false;
+    public static bool mirrorMode = false;  
     private bool isControllingAria = true;
 
     void Start()
@@ -19,9 +20,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (!isControllingAria) 
+            if (!isControllingAria)
             {
                 ariaMovement.transform.position = shadowMovement.transform.position;
             }
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
     void UpdateControl()
     {
         int baseMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI");
+
         Rigidbody2D ariaRb = ariaMovement.GetComponent<Rigidbody2D>();
         Rigidbody2D shadowRb = shadowMovement.GetComponent<Rigidbody2D>();
 
@@ -50,7 +52,7 @@ public class GameManager : MonoBehaviour
 
             shadowMovement.enabled = false;
             shadowRb.simulated = false;
-            
+
             mainCamera.cullingMask = baseMask | (1 << LayerMask.NameToLayer("AriaLayer"));
         }
         else
@@ -63,12 +65,26 @@ public class GameManager : MonoBehaviour
             shadowRb.bodyType = RigidbodyType2D.Dynamic;
             shadowRb.velocity = Vector2.zero;
 
-            mainCamera.cullingMask = baseMask | (1 << LayerMask.NameToLayer("ShadowLayer")) | (1 << LayerMask.NameToLayer("ShadowWorld"));
+            mainCamera.cullingMask = baseMask
+                | (1 << LayerMask.NameToLayer("ShadowLayer"))
+                | (1 << LayerMask.NameToLayer("ShadowWorld"));
         }
     }
 
     public bool IsControllingAria()
     {
         return isControllingAria;
+    }
+
+    public void ToggleMirrorWorld()
+    {
+        mirrorMode = !mirrorMode;
+
+        Debug.Log("Mirror Mode : " + mirrorMode);
+    }
+
+    public bool IsMirrorMode()
+    {
+        return mirrorMode;
     }
 }
