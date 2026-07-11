@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: bd8760552977d3a46a6b4a9ae77c7014
+guid: 861754b812b93d24680845b362281852
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - audioSource: {instanceID: 0}
-  - winClip: {fileID: 8300000, guid: c16767b436a1df641b957bc2fb43c156, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

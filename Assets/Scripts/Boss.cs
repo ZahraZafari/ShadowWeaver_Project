@@ -12,6 +12,10 @@ public class Boss : MonoBehaviour
     public Transform firePoint;
     public GameObject winPanel;
     public GameObject finishLine;
+    
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip deathClip;
 
     private Transform target;
     private SpriteRenderer sr;
@@ -23,6 +27,14 @@ public class Boss : MonoBehaviour
     {
         target = pointA;
         sr = GetComponent<SpriteRenderer>();
+        
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+            audioSource.loop = false;
+        }
+        
         if (finishLine != null)
             finishLine.SetActive(false);
         if (winPanel != null)
@@ -85,21 +97,21 @@ public class Boss : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
-{
-    if (isDead) return;
-
-    if (collision.gameObject.name == "Shadow" || collision.gameObject.name == "Aria")
     {
-        TakeDamage(1);
-        
-        if (!isDead)
+        if (isDead) return;
+
+        if (collision.gameObject.name == "Shadow" || collision.gameObject.name == "Aria")
         {
-            PlayerHealth health = collision.gameObject.GetComponent<PlayerHealth>();
-            if (health != null)
-                health.TakeDamage(1);
+            TakeDamage(1);
+            
+            if (!isDead)
+            {
+                PlayerHealth health = collision.gameObject.GetComponent<PlayerHealth>();
+                if (health != null)
+                    health.TakeDamage(1);
+            }
         }
     }
-}
 
     public void TakeDamage(int damage)
     {
@@ -121,26 +133,35 @@ public class Boss : MonoBehaviour
     }
 
     void Die()
-{
-    if (isDead) return;
-    isDead = true;
-
-    
-    GameObject[] projectiles = GameObject.FindGameObjectsWithTag("BossProjectile");
-    foreach (GameObject proj in projectiles)
     {
-        Destroy(proj);
+        if (isDead) return;
+        isDead = true;
+
+        PlayDeathSound();
+
+        GameObject[] projectiles = GameObject.FindGameObjectsWithTag("BossProjectile");
+        foreach (GameObject proj in projectiles)
+        {
+            Destroy(proj);
+        }
+
+        if (finishLine != null)
+            finishLine.SetActive(true);
+        if (winPanel != null)
+            winPanel.SetActive(true);
+
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null)
+            col.enabled = false;
+
+        Destroy(gameObject, deathClip != null ? deathClip.length : 0.1f);
     }
 
-    if (finishLine != null)
-        finishLine.SetActive(true);
-    if (winPanel != null)
-        winPanel.SetActive(true);
-
-    Collider2D col = GetComponent<Collider2D>();
-    if (col != null)
-        col.enabled = false;
-
-    Destroy(gameObject);
-}
+    void PlayDeathSound()
+    {
+        if (deathClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(deathClip);
+        }
+    }
 }

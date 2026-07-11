@@ -3,7 +3,11 @@ guid: 644da9be84122f147b8c9838253080b3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - healthText: {instanceID: 0}
+  - gameOverPanel: {instanceID: 0}
+  - audioSource: {instanceID: 0}
+  - gameOverClip: {fileID: 8300000, guid: 476816ae3d388b2419197da00025c01f, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

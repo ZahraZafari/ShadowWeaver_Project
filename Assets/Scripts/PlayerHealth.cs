@@ -8,14 +8,25 @@ public class PlayerHealth : MonoBehaviour
     public int currentHealth = 5;
     public Text healthText;
     public GameObject gameOverPanel;
+    
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip gameOverClip;
+
     private bool isDead = false;
 
     void Start()
     {
-        // currentHealth = maxHealth; // این خط رو کامنت کن
         UpdateHealthUI();
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false);
+        
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+            audioSource.loop = false;
+        }
     }
 
     public void TakeDamage(int damage)
@@ -49,19 +60,29 @@ public class PlayerHealth : MonoBehaviour
             healthText.text = "❤️ x " + currentHealth;
     }
 
-   void GameOver()
-{
-    if (gameOverPanel != null)
+    void GameOver()
     {
-        gameOverPanel.SetActive(true);
-        Debug.Log("GameOverPanel is now ACTIVE!");
+        PlayGameOverSound();
+        
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+            Debug.Log("GameOverPanel is now ACTIVE!");
+        }
+        else
+        {
+            Debug.Log("GameOverPanel is NULL!");
+        }
+        Time.timeScale = 0f;
     }
-    else
+
+    void PlayGameOverSound()
     {
-        Debug.Log("GameOverPanel is NULL!");
+        if (gameOverClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(gameOverClip);
+        }
     }
-    Time.timeScale = 0f;
-}
 
     public void RestartLevel()
     {

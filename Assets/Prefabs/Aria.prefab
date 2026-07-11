@@ -123,6 +123,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpForce: 10
+  projectilePrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  projectileSpeed: 10
+  audioSource: {fileID: 0}
+  footstepClip: {fileID: 8300000, guid: 18cbd58ebbaeb584f8917e49a9da30a3, type: 3}
+  jumpClip: {fileID: 8300000, guid: 0b68e94e53955134588fbf598c6a5520, type: 3}
+  hitClip: {fileID: 8300000, guid: a50f5eeeb15fe724b83823737cb4c2cd, type: 3}
+  footstepInterval: 0.3
 --- !u!114 &1769596998710641655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +145,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpForce: 10
+  projectilePrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  projectileSpeed: 10
+  audioSource: {fileID: 0}
+  footstepClip: {fileID: 8300000, guid: 18cbd58ebbaeb584f8917e49a9da30a3, type: 3}
+  jumpClip: {fileID: 8300000, guid: 0b68e94e53955134588fbf598c6a5520, type: 3}
+  hitClip: {fileID: 0}
+  footstepInterval: 0.3
 --- !u!70 &1769596998710641649
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

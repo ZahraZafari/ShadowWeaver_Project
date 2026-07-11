@@ -2018,6 +2018,8 @@ MonoBehaviour:
   firePoint: {fileID: 162758840}
   winPanel: {fileID: 718461375}
   finishLine: {fileID: 477251198}
+  audioSource: {fileID: 0}
+  deathClip: {fileID: 8300000, guid: 7769c323d0698fb47b206d698308133e, type: 3}
 --- !u!212 &992679083
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8432,6 +8434,8 @@ MonoBehaviour:
   firePoint: {fileID: 162758840}
   winPanel: {fileID: 718461375}
   finishLine: {fileID: 477251198}
+  audioSource: {fileID: 0}
+  deathClip: {fileID: 0}
 --- !u!1001 &1854369450
 PrefabInstance:
   m_ObjectHideFlags: 0
