@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +7,7 @@ public class FinishLine : MonoBehaviour
     [Header("Audio Settings")]
     public AudioSource audioSource;
     public AudioClip winClip;
+    public AudioClip nextLevelClip;
 
     void Start()
     {
@@ -23,24 +23,28 @@ public class FinishLine : MonoBehaviour
     {
         if (other.gameObject.name == "Aria")
         {
-            PlayWinSound();
-            StartCoroutine(LoadNextLevel());
+            StartCoroutine(LevelTransition());
         }
     }
 
-    IEnumerator LoadNextLevel()
-    {
-        float waitTime = winClip != null ? Mathf.Min(winClip.length, 2f) : 1f;
-        yield return new WaitForSeconds(waitTime);
-        
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    void PlayWinSound()
+    IEnumerator LevelTransition()
     {
         if (winClip != null && audioSource != null)
         {
             audioSource.PlayOneShot(winClip);
+            yield return new WaitForSeconds(winClip.length);
         }
+
+        if (nextLevelClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(nextLevelClip);
+            yield return new WaitForSeconds(nextLevelClip.length);
+        }
+        else
+        {
+            yield return new WaitForSeconds(1f);
+        }
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

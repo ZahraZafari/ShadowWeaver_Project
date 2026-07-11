@@ -3,7 +3,13 @@ guid: 470962dc5bcecbb419399945caa74305
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - projectilePrefab: {instanceID: 0}
+  - firePoint: {instanceID: 0}
+  - audioSource: {instanceID: 0}
+  - footstepClip: {fileID: 8300000, guid: 18cbd58ebbaeb584f8917e49a9da30a3, type: 3}
+  - jumpClip: {fileID: 8300000, guid: 0b68e94e53955134588fbf598c6a5520, type: 3}
+  - hitClip: {fileID: 8300000, guid: a50f5eeeb15fe724b83823737cb4c2cd, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

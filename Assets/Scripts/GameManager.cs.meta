@@ -3,7 +3,12 @@ guid: e8aa8cd6e3b0d06449aef4212f572c94
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ariaMovement: {instanceID: 0}
+  - shadowMovement: {instanceID: 0}
+  - mainCamera: {instanceID: 0}
+  - audioSource: {instanceID: 0}
+  - transformClip: {fileID: 8300000, guid: dc2b2a639004f6249bd14d85b0c21b62, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

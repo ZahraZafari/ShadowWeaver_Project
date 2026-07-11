@@ -783,6 +783,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd8760552977d3a46a6b4a9ae77c7014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  winClip: {fileID: 0}
+  nextLevelClip: {fileID: 0}
 --- !u!212 &477251200
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1055,6 +1058,8 @@ MonoBehaviour:
   currentHealth: 5
   healthText: {fileID: 1660832139}
   gameOverPanel: {fileID: 548124310}
+  audioSource: {fileID: 0}
+  gameOverClip: {fileID: 0}
 --- !u!1 &600759675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1945,6 +1950,8 @@ MonoBehaviour:
   currentHealth: 5
   healthText: {fileID: 1660832139}
   gameOverPanel: {fileID: 548124310}
+  audioSource: {fileID: 0}
+  gameOverClip: {fileID: 0}
 --- !u!1 &890361121
 GameObject:
   m_ObjectHideFlags: 0
@@ -8736,6 +8743,8 @@ MonoBehaviour:
   currentHealth: 5
   healthText: {fileID: 1660832139}
   gameOverPanel: {fileID: 548124310}
+  audioSource: {fileID: 0}
+  gameOverClip: {fileID: 0}
 --- !u!1 &2112817638
 GameObject:
   m_ObjectHideFlags: 0

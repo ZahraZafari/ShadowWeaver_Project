@@ -6,6 +6,7 @@ MonoImporter:
   defaultReferences:
   - audioSource: {instanceID: 0}
   - winClip: {fileID: 8300000, guid: c16767b436a1df641b957bc2fb43c156, type: 3}
+  - nextLevelClip: {fileID: 8300000, guid: e90c34afb6ecb56498be0039797b8627, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

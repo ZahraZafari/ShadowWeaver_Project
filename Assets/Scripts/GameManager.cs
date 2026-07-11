@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour
     public PlayerMovement shadowMovement;
     public Camera mainCamera;
 
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip transformClip; 
+
     public static Vector3 lastCheckpoint = Vector3.zero;
     public static bool mirrorMode = false;  
     private bool isControllingAria = true;
@@ -16,12 +20,22 @@ public class GameManager : MonoBehaviour
     {
         isControllingAria = true;
         UpdateControl();
+
+        // اگه AudioSource نذاشتی، خودش میسازه
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+            audioSource.loop = false;
+        }
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            PlayTransformSound();
+
             if (!isControllingAria)
             {
                 ariaMovement.transform.position = shadowMovement.transform.position;
@@ -79,12 +93,19 @@ public class GameManager : MonoBehaviour
     public void ToggleMirrorWorld()
     {
         mirrorMode = !mirrorMode;
-
         Debug.Log("Mirror Mode : " + mirrorMode);
     }
 
     public bool IsMirrorMode()
     {
         return mirrorMode;
+    }
+
+    void PlayTransformSound()
+    {
+        if (transformClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(transformClip);
+        }
     }
 }
