@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
         isControllingAria = true;
         UpdateControl();
 
-        // اگه AudioSource نذاشتی، خودش میسازه
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();

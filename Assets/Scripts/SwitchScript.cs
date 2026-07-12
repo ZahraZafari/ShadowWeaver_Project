@@ -7,6 +7,10 @@ public class SwitchScript : MonoBehaviour
     public bool stayPressed = false;
     public Color activeColor = Color.green;
 
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip switchClip;
+
     private Color defaultColor;
     private SpriteRenderer sr;
 
@@ -14,6 +18,13 @@ public class SwitchScript : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         defaultColor = sr.color;
+
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+            audioSource.loop = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -32,6 +43,7 @@ public class SwitchScript : MonoBehaviour
         {
             isPressed = true;
             sr.color = activeColor;
+            PlaySwitchSound();
         }
     }
 
@@ -51,6 +63,14 @@ public class SwitchScript : MonoBehaviour
         {
             isPressed = false;
             sr.color = defaultColor;
+        }
+    }
+
+    void PlaySwitchSound()
+    {
+        if (switchClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(switchClip);
         }
     }
 }
