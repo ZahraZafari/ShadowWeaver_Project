@@ -4,30 +4,20 @@ using System.Collections;
 
 public class MirrorButton : MonoBehaviour
 {
-    public GameObject fadePanel;
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.name == "Aria")
         {
-            StartCoroutine(LoadSceneWithFade());
+            string currentScene = SceneManager.GetActiveScene().name;
+            
+            if (currentScene == "Level3")
+            {
+                SceneManager.LoadScene("Level3_Mirror");
+            }
+            else if (currentScene == "Level3_Mirror")
+            {
+                SceneManager.LoadScene("Level3");
+            }
         }
-    }
-
-    IEnumerator LoadSceneWithFade()
-    {
-        // نمایش صفحه سیاه
-        if (fadePanel != null)
-            fadePanel.SetActive(true);
-
-        // مکث کوتاه برای نمایش fade
-        yield return new WaitForSeconds(0.3f);
-
-        // تعیین صحنه بعدی
-        string currentScene = SceneManager.GetActiveScene().name;
-        string nextScene = (currentScene == "Level3") ? "Level3_Mirror" : "Level3";
-
-        // لود صحنه
-        SceneManager.LoadScene(nextScene);
     }
 }

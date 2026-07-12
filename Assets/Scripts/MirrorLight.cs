@@ -8,11 +8,9 @@ public class MirrorLight : MonoBehaviour
     {
         if (other.gameObject.name == "Aria")
         {
-            // پخش افکت
             if (burnEffect != null)
                 burnEffect.Play();
 
-            // برگشت به چک‌پوینت
             if (GameManager.lastCheckpoint != Vector3.zero)
             {
                 GameObject aria = GameObject.Find("Aria");
@@ -25,7 +23,6 @@ public class MirrorLight : MonoBehaviour
                     shadow.transform.position = GameManager.lastCheckpoint;
             }
 
-            // متوقف کردن افکت بعد از برگشت
             if (burnEffect != null)
                 burnEffect.Stop();
         }
