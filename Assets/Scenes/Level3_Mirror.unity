@@ -751,7 +751,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d620474020cf554ba7b77e5bb5f8884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadePanel: {fileID: 0}
 --- !u!61 &221173419
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7745,7 +7744,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d620474020cf554ba7b77e5bb5f8884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadePanel: {fileID: 0}
 --- !u!61 &1312389783
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8378,8 +8376,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1550858483}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.1976, y: -2.999772, z: -0.2966957}
-  m_LocalScale: {x: 5.7328258, y: 4.940521, z: 0}
+  m_LocalPosition: {x: -6.1976, y: -2.942, z: -0.2966957}
+  m_LocalScale: {x: 5.7328258, y: 4.958801, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 464792530}

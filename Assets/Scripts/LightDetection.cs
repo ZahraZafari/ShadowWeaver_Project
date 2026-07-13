@@ -8,6 +8,8 @@ public class LightDetection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Light hit: " + other.gameObject.name);
+
         if (other.gameObject.name == "Shadow")
         {
             StartCoroutine(BurnAndRespawn());
@@ -17,9 +19,14 @@ public class LightDetection : MonoBehaviour
     IEnumerator BurnAndRespawn()
     {
         if (burnEffect != null)
+        {
             burnEffect.Play();
+            Debug.Log("Burn effect played!");
+        }
 
         yield return new WaitForSeconds(respawnDelay);
+
+        Debug.Log("Last checkpoint: " + GameManager.lastCheckpoint);
 
         if (GameManager.lastCheckpoint != Vector3.zero)
         {
@@ -27,10 +34,20 @@ public class LightDetection : MonoBehaviour
             GameObject shadow = GameObject.Find("Shadow");
 
             if (aria != null)
+            {
                 aria.transform.position = GameManager.lastCheckpoint;
+                Debug.Log("Aria moved to checkpoint");
+            }
 
             if (shadow != null)
+            {
                 shadow.transform.position = GameManager.lastCheckpoint;
+                Debug.Log("Shadow moved to checkpoint");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Last checkpoint is zero! Set a checkpoint first.");
         }
     }
 }

@@ -8,4 +8,10 @@ public class LoadLevel : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(1);
     }
+    public void GoToMainMenu()
+{
+    Time.timeScale = 1f;
+    SceneManager.LoadScene(0);
+}
+
 }

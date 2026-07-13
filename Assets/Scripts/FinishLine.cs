@@ -32,17 +32,17 @@ public class FinishLine : MonoBehaviour
         if (winClip != null && audioSource != null)
         {
             audioSource.PlayOneShot(winClip);
-            yield return new WaitForSeconds(winClip.length);
+            yield return new WaitForSeconds(0.5f); 
         }
 
         if (nextLevelClip != null && audioSource != null)
         {
             audioSource.PlayOneShot(nextLevelClip);
-            yield return new WaitForSeconds(nextLevelClip.length);
+            yield return new WaitForSeconds(0.5f); 
         }
         else
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.3f);
         }
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
